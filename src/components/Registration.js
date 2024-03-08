@@ -24,9 +24,10 @@ const Registration = () => {
                 message.success('Registration successful!');
                 navigate('/dashboard');
             }
-        } else {
-            message.error('Please fill all details.');
         }
+        // } else {
+        //     //message.error('Please fill all details.');
+        // }
     };
 
     return (
@@ -36,7 +37,11 @@ const Registration = () => {
                 <Form.Item
                     label="Username"
                     name="username"
-                    rules={[{ required: true, message: 'Please enter your username!' }]}
+                    rules={[
+                        { required: true, message: 'Please enter your username!' },
+                        { pattern: /^[A-Za-z]+$/, message: 'Username must contain only characters!' }
+                    ]}
+                    
                 >
                     <Input
                         value={username}
@@ -47,7 +52,11 @@ const Registration = () => {
                 <Form.Item
                     label="First Name"
                     name="firstName"
-                    rules={[{ required: true, message: 'Please enter your first name!' }]}
+                    rules={[
+                        { required: true, message: 'Please enter your first name!' },
+                        { pattern: /^[A-Za-z]+$/, message: 'First name must contain only characters!' }
+                    ]}
+                    
                 >
                     <Input
                         value={firstName}
@@ -58,7 +67,10 @@ const Registration = () => {
                 <Form.Item
                     label="Last Name"
                     name="lastName"
-                    rules={[{ required: true, message: 'Please enter your last name!' }]}
+                    rules={[
+                        { required: true, message: 'Please enter your first name!' },
+                        { pattern: /^[A-Za-z]+$/, message: 'Last name must contain only characters!' }
+                    ]}
                 >
                     <Input
                         value={lastName}
@@ -116,7 +128,7 @@ const Registration = () => {
                         addonBefore={<FontAwesomeIcon icon={faLock} className="fa" />}
                     />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item className='btn'>
                     <Button type="primary" onClick={handleSignUp}>Sign Up</Button>
                 </Form.Item>
             </Form>
